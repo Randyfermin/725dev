@@ -68,20 +68,28 @@ input[type="text"]
     margin: 5px;
 }
 
-#div_msj p strong{
+.div_msj p strong, .div_msj_encriptado p{
     font-weight: bold;
+    margin: 5% 20px;
+    word-break: break-all;
+    white-space: normal;
 }
+
 #div_msj p{
     text-align: center;
 }
 #div_msj{
     margin-top: 10%;
 }
-#div_msj_encriptado{
-    margin-top: 20%;
-    margin-bottom: 129%;
+
+.div_msj_encriptado{
+    height: 84%;
     text-align: center;
 }
+.div_btn_copiar{
+    height: 13%;
+}
+
 .btns{
     margin-inline: 2%;
 }
@@ -167,7 +175,7 @@ footer{
     .first,
     .second {
         height: 300px;
-        margin: 1% 15%;
+        margin: 3% 15%;
     }
     .second{
         width: 630px;
@@ -182,12 +190,18 @@ footer{
       .muneco{
         display: none;
       }
-    #div_msj_encriptado{
-        margin-top: 20%;
-        margin-bottom: 30%;
+    .div_msj_encriptado{
+        height: 60%;
+    }
+    .div_btn_copiar{
+        height: 30%;
     }
     #div_msj {
-        margin-top: 25%;
+        margin-top: 15%;
+    }
+    .btn_copiar{
+        width: 90%;
+        margin: 0 10% 10% 0;
     }
 }
 
