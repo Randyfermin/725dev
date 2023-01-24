@@ -7,60 +7,209 @@
         <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width">
         <title>Encriptador Alura</title>
-        <link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/style copy.css">
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="encript.css">
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>                    
 
     </head>
 
     <body>
         <header> 
             <div class="caja">
-                <h1><img src="imagenes/logo.png">Encriptador de Mensajes Alura</h1>
+                <h1><img src="imagenes/Logo_Alura.png">Encriptador de Mensajes Alura</h1>
             </div>
         </header>
         <main>
-            <div id="main_div">
-                <div class="Div_form">
-                    <div>
-                        <label for="mensaje">Mensaje a Encriptar/Desencriptar</label>
-                        <textarea cols="80" rows="37" id="mensaje" required></textarea>
-                    </div>
-                    <div>
-                        <label><img src="imagenes/bi_exclamation-circle-fill.png">
-                            Solo letras minúsculas y sin acentos</label>
-                        <input value="Encriptar" type="button" class="btn_encriptar" onclick="demoVisibility()">
-                        <input value="Desencriptar" type="button" class="btn_desencriptar">
-                    </div>
+            <div class="div_formulario">
+                <div class="msj">
+                    <label id="lbl_msj" for="mensaje">Mensaje a Encriptar y/o Desencriptar</label>
+                    <input type="text" id="mensaje" required></input>
+                    <p id="mensaje_ejecutado" style="display:none;"></p>
                 </div>
-                <div id="div_get_msj" class="rectangulo">
-                    <img id="Img01" class="muneco" src="imagenes/Muneco.png" alt="">
-                    <div id="div_msj" class="frame5">
-                        <p class="frame5p1">Ningún mensaje fue encontrado</p>
-                        <p class="frame5p2">Ingresa el texto que desees encriptar o desencriptar.</p>
-                    </div>
+                <div class="btns">
+                    <label class="btn_label"><img src="imagenes/bi_exclamation-circle-fill.png">
+                        Solo letras minúsculas y sin acentos</label>
+                    <input value="Encriptar" type="button" class="btn_encriptar" onclick="encriptar_msj()">
+                    <input value="Desencriptar" type="button" class="btn_desencriptar" onclick="desencriptar_msj()">
                 </div>
-                <div id="div_resultado" class="rectangulo_resultado" style="display:none;">
-                    <div class="frame6">
-                        <p class="frame5p1">El mensaje encriptado!</p>
-                    </div>
-                    <div class="frame7">
-                        <input class="btn_copiar" value="Copiar" type="button">
-                    </div>
+            </div>
+            <div id="msj_buscar" class="div_resultado">
+                <img id="Img01" class="muneco" src="imagenes/Muneco.png" alt="">
+                <div id="div_msj" class="div_msj">
+                    <p><strong>Ningún mensaje fue encontrado</strong><br>Ingresa el texto que desees encriptar o desencriptar.</p>
+                </div>
+            </div>
+            <div id="div_resultado" class="div_resultado" style="display:none;">
+                <div id="div_msj_encriptado" class="div_msj_encriptado">
+                    <p id="msj_encriptado"></p>
+                </div>
+                <div class="div_btn_copiar">
+                    <input id="btn_copiar" class="btn_copiar" value="Copiar" type="button" onclick="copyText()" >
                 </div>
             </div>
         </main>
         <footer>
-            <img src="imagenes/logo.png">
+            <img src="imagenes/Logo_Alura.png">
             <p class="copyright">&#169 Copyright Randolfo Fermin Powered by &#169Alura 2023</p>
+            <a href="https://www.linkedin.com/in/randolfo-fermin-dev725" class='fa fa-linkedin-square  blue-color' target="_blank">LinkedIn</a>
         </footer>
         <script>
-            function demoVisibility() {
-              document.getElementById("div_get_msj").style.display = "none";
-              document.getElementById("div_resultado").style.display = "flex";
+            /*  La letra "e" es convertida para "enter"
+                La letra "i" es convertida para "imes"
+                La letra "a" es convertida para "ai"
+                La letra "o" es convertida para "ober"
+                La letra "u" es convertida para "ufat"*/
+            function isVowel(c) {
+                    return ['a', 'e', 'i', 'o', 'u'].indexOf(c.toLowerCase()) !== -1
+                }
+
+            function encriptar(vChr){
+                switch(vChr) {
+                case "e":
+                    // code block
+                    return "enter";
+                    break;
+                case "i":
+                    // code block
+                    return "imes";
+                    break;
+                case "a":
+                    // code block
+                    return "ai";
+                    break;
+                case "o":
+                    // code block
+                    return "ober";
+                    break;
+                case "u":
+                    // code block
+                    return "ufat";
+                    break;
+                } 
+            }
+
+            function encriptar_msj() {
+              var str = document.getElementById("mensaje").value.toLowerCase();
+              var newStr = "";
+              if (str.length > 0)
+              {
+                mostrar_div_resultado();
+                
+
+                    for (var i = 0; i < str.length; i++) {
+                        
+                        if (isVowel(str[i])){  
+                            newStr = newStr + (encriptar(str[i])); 
+                            
+                        }else{
+                            newStr = newStr + str[i]; 
+                        }  
+
+                    }
+                    document.getElementById("msj_encriptado").innerText = newStr;
+                    document.getElementById("mensaje_ejecutado").innerText = "Su mensaje fue encriptado con Exito!";
+
+                }
+                else{
+                    resetear_div_resultado_mensaje();
+                }
+            }
+
+            function desencriptar_msj(){
+
+
+                //aqui hay otro cambio
+                let text = document.getElementById("mensaje").value.toLowerCase();
+                let myArray = text.split(" ");
+                let new_Msj = "";
+                let newword = "";
+                if (text.length > 0)
+                {
+                    mostrar_div_resultado();
+
+                    for (var i = 0; i < myArray.length; i++) {
+                    let word = myArray[i];
+                    let key_founded = false;
+                        
+                        if(found_key(word, /ai/g) != null){
+                            word = change_word(word, /ai/g, 'a');                        
+                        }
+
+                        if(found_key(word, /enter/g) != null){
+                            word = change_word(word, /enter/g, 'e');                        
+                        }
+
+                        if(found_key(word, /imes/g) != null){
+                            word = change_word(word, /imes/g, 'i');                        
+                        }
+
+                        if(found_key(word, /ober/g) != null){
+                            word = change_word(word, /ober/g, 'o');                        
+                        }
+
+                        if(found_key(word, /ufat/g) != null){
+                            word = change_word(word, /ufat/g, 'u');                        
+                        }
+
+                        new_Msj = new_Msj + word + " ";
+                    }
+
+                    document.getElementById("msj_encriptado").innerText = new_Msj;
+                    document.getElementById("mensaje_ejecutado").innerText = "Su mensaje fue desencriptado con Exito!";
+
+                }
+                else{
+                    resetear_div_resultado_mensaje();
+                    
+                }                    
+            }
+
+            function change_word(word, key, replacer) {
+                
+                return word.replace(key, `${replacer}`);;
+            }
+
+            function found_key(word, key) {
+                
+                const found = word.match(key);
+                return found;
+            }
+            
+            function copyText() {
+
+                /* Select text area by id*/
+                var Text = document.getElementById("msj_encriptado").innerText;
+
+                /* Select the text inside text area. */
+                Text.select();
+
+                /* Copy selected text into clipboard */
+                navigator.clipboard.writeText(Text.value);
+
+                /* Set the copied text as text for
+                div with id clipboard 
+                document.getElementById("clipboard").innerHTML = Text.value; */
+                }
+                
+            function mostrar_div_resultado()
+            {
+                document.getElementById("msj_buscar").style.display = "none";
+                document.getElementById("div_resultado").style.display = "inline-block";
+                document.getElementById("mensaje_ejecutado").style.display = "grid";
+                document.getElementById("lbl_msj").style.display = "none";
+                document.getElementById("mensaje").style.display = "none";
+            }
+            function resetear_div_resultado_mensaje()
+            {
+                document.getElementById("msj_buscar").style.display = "inline-block";
+                document.getElementById("div_resultado").style.display = "none";
+                document.getElementById("mensaje_ejecutado").style.display = "none";
+                document.getElementById("lbl_msj").style.display = "inline-block";
+                document.getElementById("mensaje").style.display = "inline-block";
             }
             </script>
     </body>
