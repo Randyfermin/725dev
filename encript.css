@@ -54,7 +54,7 @@ div {
 
 .msj{
     display: grid;
-    margin-bottom: 75%;
+    height: 563px;
 }
 .msj label{
     text-align: center;
@@ -159,6 +159,24 @@ input[type="text"]
     display: block;
 }
 
+
+textarea{
+    padding:10px;
+    margin: 0 auto 10px; 
+    border:none ;font-size:20px;
+    border-radius:10px;outline:none;
+    transition: box-shadow .3s ease
+  }
+  
+  textarea:-ms-input-placeholder {color: #0A3871;}
+  textarea::-moz-placeholder {color: #0A3871;}
+  textarea::-webkit-input-placeholder {color: #0A3871;}
+  
+  /*textarea:focus{2px solid #2d303a91}*/
+  textarea:focus,
+  textarea:hover{box-shadow:0px 0px 13px 0px #0A3871;}
+
+
 footer{
     text-align: center;
     /*background: url(../imagenes/footer_background.png);*/
@@ -172,6 +190,8 @@ footer{
     font-size: 13px;
     padding: 20px;
 }
+
+
 
 @media screen and (max-width:820px){
     main{
@@ -187,7 +207,7 @@ footer{
         width: 630px;
     }
     .msj{
-        margin-bottom: 20%;
+        height: 185px;
     }
     .btn_encriptar:hover, .btn_desencriptar:hover, .btn_copiar:hover {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
@@ -212,15 +232,19 @@ footer{
         width: 100%;
         display: table-caption;
         }
-    .div_formulario,
     .div_resultado {
         width: 100%;
-        height: 300px;
+        height: 260px;
+        margin: 5%;
+    }
+    .div_formulario {
+        width: 100%;
+        height: 480px;
         margin: 5%;
     }
     .msj{
         display: grid;
-        margin-bottom: 10%;
+        height:unset;
     }
     .btn_encriptar, .btn_desencriptar{
         margin: 0.5% 8%;
@@ -231,5 +255,8 @@ footer{
     .btn_encriptar:hover, .btn_desencriptar:hover, .btn_copiar:hover {
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
         cursor: pointer;
+      }
+      textarea{
+        width: 16em;
       }
 }
