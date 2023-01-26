@@ -48,7 +48,7 @@
                     <p id="msj_encriptado"></p>
                 </div>
                 <div class="div_btn_copiar">
-                    <input id="btn_copiar" class="btn_copiar" value="Copiar" type="button" onclick="copyText()" >
+                    <input id="btn_copiar" class="btn_copiar" value="Copiar" type="button" >
                 </div>
             </div>
         </main>
@@ -179,45 +179,22 @@
                 return found;
             }
             
-            function copyText() {
+            //declaracion de los objetos para el listener del copiado
+            let textoEncriptado = document.querySelector('#msj_encriptado');
+            let manejadorCopiarClick = document.querySelector('#btn_copiar');
 
-                
+            manejadorCopiarClick.addEventListener('click', () => {
+                let text = textoEncriptado.textContent;
+                navigator.clipboard.writeText(`${text}`);
+
                 resetear_div_resultado_mensaje();
                 limpiar_contenido();
                 
-                /* Select text area by id*/
-                var Text = document.getElementById("msj_encriptado").innerText;
-
-                /* Select the text inside text area. */
-                Text.select();
-
-                /* Copy selected text into clipboard */
-                navigator.clipboard.writeText(Text.value);
-
-                /* Set the copied text as text for
-                div with id clipboard */
-                //document.getElementById("mensaje").innerHTML = Text.value;
-
-
-            }
-
-            function myFunction() {
-            // Get the text field
-            var copyText = document.getElementById("myInput");
-
-            // Select the text field
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); // For mobile devices
-
-            // Copy the text inside the text field
-            navigator.clipboard.writeText(copyText.value);
-            
-            // Alert the copied text
-            alert("Copied the text: " + copyText.value);
-            }
+                alert(`Texto copiado al clipboard!`);
+            });
 
             function limpiar_contenido(){
-                document.getElementById("mensaje").innerText = "";
+                document.getElementById("mensaje").value = "";
             }
                 
             function mostrar_div_resultado()
