@@ -58,11 +58,13 @@
             <a href="https://www.linkedin.com/in/randolfo-fermin-dev725" class='fa fa-linkedin-square  blue-color' target="_blank">LinkedIn</a>
         </footer>
         <script>
+
             /*  La letra "e" es convertida para "enter"
                 La letra "i" es convertida para "imes"
                 La letra "a" es convertida para "ai"
                 La letra "o" es convertida para "ober"
                 La letra "u" es convertida para "ufat"*/
+                limpiar_contenido();
             function isVowel(c) {
                     return ['a', 'e', 'i', 'o', 'u'].indexOf(c.toLowerCase()) !== -1
                 }
@@ -189,7 +191,7 @@
 
                 resetear_div_resultado_mensaje();
                 limpiar_contenido();
-                
+
                 alert(`Texto copiado al clipboard!`);
             });
 
