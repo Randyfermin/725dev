@@ -183,7 +183,8 @@
 
                 
                 resetear_div_resultado_mensaje();
-                document.getElementById("mensaje").innerHTML = "";
+                limpiar_contenido();
+                
                 /* Select text area by id*/
                 var Text = document.getElementById("msj_encriptado").innerText;
 
@@ -213,6 +214,10 @@
             
             // Alert the copied text
             alert("Copied the text: " + copyText.value);
+            }
+
+            function limpiar_contenido(){
+                document.getElementById("mensaje").innerText = "";
             }
                 
             function mostrar_div_resultado()
